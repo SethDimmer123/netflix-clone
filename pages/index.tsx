@@ -1,11 +1,11 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Header from '../components/Header'
 import Banner from "../components/Banner"
 import requests from '../utils/requests'
 
-const Home = ({netflixOriginals}) => {
+const Home = ({netflixOriginals} :Props) => {
+  console.log(netflixOriginals)
   return (
     <div className="relative h-screen bg-gradient-to-b from-gray-900/10
     to-[#010511] lg:h-[140vh]">
@@ -56,7 +56,7 @@ export const getServerSideProps = async () => {
     horrorMovies,
     romanceMovies,
     documentaries,
-  ] = await Promise.all([// using on eawait and promise.all to accompany the whole operation
+  ] = await Promise.all([// using on an await and promise.all to accompany the whole operation
   // instead of haveing to await for all of the fetch requests.
     fetch(requests.fetchNetflixOriginals).then((res) => res.json()),
     fetch(requests.fetchTrending).then((res) => res.json()),
@@ -84,3 +84,15 @@ export const getServerSideProps = async () => {
   // on top of the application NextPage
 }
 // to test it put netflixOriginals in the () on line 8 and use typescript
+
+// the reason i am using typescript is it gives me really good intilisense and is really good
+// for production enviorments.
+
+// if i am working on big applications i need the intilisense because i might be working on different
+// stuff all the time.
+
+
+
+
+
+
