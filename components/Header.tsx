@@ -1,8 +1,36 @@
 import {BellIcon, MagnifyingGlassIcon} from "@heroicons/react/24/solid";
 import Link from "next/link";
+import { useEffect,useState } from "react";
 
 function Header() {
-  return <header>
+  const [isScrolled, setIsScrolled] = useState(false) 
+  {/**be default the boolean value is false */}
+
+  // useEffect will only run on a single mount.
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if(window.scrollY > 0) {// if window scroll on y-axis is greater than y have it fixed on top
+        setIsScrolled(true)
+      }
+      else{
+        setIsScrolled(false)
+        
+      }
+    }
+    // what useEffect does is when the ui of the component mounts(loads) 
+
+    window.addEventListener("scroll", handleScroll)
+
+    return() => {
+      window.removeEventListener('scroll',handleScroll)
+    }
+  },[])
+  // this useEffect will only run if the header is mounting that is why i have the [] dependency
+  // if i took out the squiggly brackets then the useEffect would run EVERYTIME the page renders.
+
+  return <header className={`${isScrolled && "bg-red-500"}`}>
+    {/* line 33 i have javascript if isScrolled is true then change background color to #141414 */}
     <div className="flex items-center  space-x-2 md:space-x-10">
       {/** space x-10 phone stylings (min-width) md medium breakpoint768px when using tailwind css i need to use min-width*/}
       {/**space x-2 gives me space between logo and list items*/}

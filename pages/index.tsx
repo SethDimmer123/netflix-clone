@@ -5,7 +5,9 @@ import Header from '../components/Header'
 
 const Home: NextPage = () => {
   return (
-    <div className="">
+    <div className="relative h-screen h-[140vh]">
+      {/* the outer most div is relative to the position fixed i gave the header in globals.css */}
+      {/* height of screen and height of 140vh */}
       <Head>
         <title>Home - Netflix</title>
         <link rel="icon" href="/favicon.ico" />
