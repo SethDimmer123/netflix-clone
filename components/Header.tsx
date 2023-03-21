@@ -1,4 +1,4 @@
-import {MagnifyingGlassIcon} from "@heroicons/react/24/solid";
+import {BellIcon, MagnifyingGlassIcon} from "@heroicons/react/24/solid";
 
 function Header() {
   return <header>
@@ -26,6 +26,9 @@ function Header() {
     <div>
       <MagnifyingGlassIcon className="hidden h-6 w-6 sm:inline"/>
       {/* hover over the sm to see the breakpoint and display inline height and width-6 */}
+      <p className="hidden lg:inline">Kids</p>
+      {/* large breakoint 1024px hidden by default on phones */}
+      <BellIcon className=" h-6 w-6"/>
     </div>
   </header>
 }
