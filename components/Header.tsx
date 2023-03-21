@@ -1,4 +1,5 @@
 import {BellIcon, MagnifyingGlassIcon} from "@heroicons/react/24/solid";
+import Link from "next/link";
 
 function Header() {
   return <header>
@@ -23,12 +24,16 @@ function Header() {
         </ul>
     </div>
 
-    <div>
+    <div className="flex item-center space-x-4 text-sm font-light">
       <MagnifyingGlassIcon className="hidden h-6 w-6 sm:inline"/>
       {/* hover over the sm to see the breakpoint and display inline height and width-6 */}
       <p className="hidden lg:inline">Kids</p>
       {/* large breakoint 1024px hidden by default on phones */}
       <BellIcon className=" h-6 w-6"/>
+      <Link href="http:/account">
+        {/*  href is a required attribute when using the link component when using typescript*/}
+        <img src="https://rb.gy/g1pwyx" alt="" className="cursor-pointer rounded"/>
+      </Link>
     </div>
   </header>
 }

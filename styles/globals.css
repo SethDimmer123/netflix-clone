@@ -7,6 +7,15 @@
     body{
         @apply bg-[#141414] text-white; 
     }
+
+    header{
+        @apply fixed top-0 z-50 flex w-full items-center justify-between
+        px-4 py-4 transition-all lg:px-10 lg:py-6;
+        /* py is top and bottom padding 
+        px is left and right padding */
+        /* header fixed on top 
+        w-full is 100%*/
+    }
 }
 
 /*@apply lets me use tailwind css*/
