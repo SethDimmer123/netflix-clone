@@ -1,6 +1,8 @@
 function Header() {
   return <header>
-    <div className="flex items-center space-x-2 md">{/**phone stylings (min-width) */}
+    <div className="flex items-center  space-x-2 md:space-x-10">
+      {/** space x-10 phone stylings (min-width) md medium breakpoint768px when using tailwind css i need to use min-width*/}
+      {/**space x-2 gives me space between logo and list items*/}
     <img
           src="https://rb.gy/ulxxee"
           width={100}
@@ -8,12 +10,13 @@ function Header() {
           className="cursor-pointer object-contain"
         />
 
-        <ul>
-          <li>Home</li>
-          <li>Tv Shows</li>
-          <li>Movies</li>
-          <li>New & Popular</li>
-          <li>My List</li>
+        <ul className="hidden space-x-4 md:flex">
+          {/* i want my ul to show when it is above 768px */}
+          <li className="headerLink">Home</li>
+          <li className="headerLink">Tv Shows</li>
+          <li className="headerLink">Movies</li>
+          <li className="headerLink">New & Popular</li>
+          <li className="headerLink">My List</li>
         </ul>
     </div>
   </header>

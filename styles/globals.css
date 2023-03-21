@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* base layer has my html body,,heading tag, and h1 basically all of my basic html tags */
+@layer base{
+    body{
+        @apply bg-[#141414] text-white; 
+    }
+}
+
+/*@apply lets me use tailwind css*/
+/* i could also use regualr css without the @apply */
+
+/* components are custom classNames */
+@layer components {
+    .headerLink{ 
+        @apply cursor-pointer 
+        text-sm font-light text-[#e5e5e5] /*text small*/
+        transition duration-[.4s]
+        hover:text-[#b3b3b3];
+    }
+}
