@@ -29,7 +29,7 @@ function Header() {
   // this useEffect will only run if the header is mounting that is why i have the [] dependency
   // if i took out the squiggly brackets then the useEffect would run EVERYTIME the page renders.
 
-  return <header className={`${isScrolled && "bg-red-500"}`}>
+  return <header className={`${isScrolled && "bg-[#141414]"}`}>
     {/* line 33 i have javascript if isScrolled is true then change background color to #141414 */}
     <div className="flex items-center  space-x-2 md:space-x-10">
       {/** space x-10 phone stylings (min-width) md medium breakpoint768px when using tailwind css i need to use min-width*/}
