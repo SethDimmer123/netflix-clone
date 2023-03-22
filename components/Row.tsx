@@ -38,6 +38,9 @@ function Row({title,movies}:Props) {// carousel function for clicking the button
     // in the console i check the client width in the console base on
     //  how big or small my window is.
 
+    // server side thumbnails i get everytime i refresh 
+    // absolutely NO LOADING
+
 
 
   return <div className="h-40 space-y-0.5 md:space-y-2">
