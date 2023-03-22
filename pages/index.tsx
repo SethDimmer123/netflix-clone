@@ -54,7 +54,7 @@ const Home = ({
       </Head>
       {/* Header */}
       <Header/>
-      <main>
+      <main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-16'>
         {/* Banner */}
         <Banner netflixOriginals={netflixOriginals}/>
         {/* i am sending the netflix originals to my banner component */}

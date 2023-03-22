@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('tailwindcss-textshadow')],
 }
 
 // i get a 2nd error (continued from next.config.js) image.tmdb.org is not configured
