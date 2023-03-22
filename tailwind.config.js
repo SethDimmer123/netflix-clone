@@ -10,3 +10,11 @@ module.exports = {
   },
   plugins: [],
 }
+
+// i get a 2nd error (continued from next.config.js) image.tmdb.org is not configured
+// under images in your next.config.js component
+
+// i need to config my host name 
+// in next.config.js images:{
+// domains: ['assets.example.com']
+// }
