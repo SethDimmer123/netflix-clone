@@ -3,9 +3,31 @@ import Image from 'next/image'
 import Header from '../components/Header'
 import Banner from "../components/Banner"
 import requests from '../utils/requests'
+import { Movie } from '../typing'
 
-const Home = ({netflixOriginals} :Props) => {
-  console.log(netflixOriginals)
+interface Props {
+  netflixOriginals: Movie[]// netflix originals is going to be an array of different movies
+  trendingNow: Movie[]
+  topRated: Movie[]
+  actionMovies: Movie[]
+  comedyMovies: Movie[]
+  horrorMovies: Movie[]
+  romanceMovies: Movie[]
+  documentaries: Movie[]
+}
+
+
+const Home = ({
+  netflixOriginals,  
+  actionMovies,
+  comedyMovies,
+  documentaries,
+  horrorMovies,
+  romanceMovies,
+  topRated,
+  trendingNow,
+} :Props) => {
+  // console.log(netflixOriginals)
   return (
     <div className="relative h-screen bg-gradient-to-b from-gray-900/10
     to-[#010511] lg:h-[140vh]">
@@ -23,7 +45,8 @@ const Home = ({netflixOriginals} :Props) => {
       <Header/>
       <main>
         {/* Banner */}
-        <Banner />
+        <Banner netflixOriginals={netflixOriginals}/>
+        {/* i am sending the netflix originals to my banner component */}
         <section>
           {/* Row */}
           {/* Row */}
@@ -94,5 +117,7 @@ export const getServerSideProps = async () => {
 
 
 
+// i can only do the server side rendering on pages not components
 
+// so i send the netflix orginals to my component
 
