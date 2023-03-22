@@ -20,7 +20,7 @@ function Banner({netflixOriginals}:Props) {
 
   return <div>
     <div className="absolute top-0 left-0">
-        <Image src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`}
+        <Image alt="" src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`}
         layout="fill"
         />
     </div>
