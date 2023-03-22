@@ -47,6 +47,8 @@ const Home = ({
       {/* the gradient bottom from gray 900 */}
       {/* 10 means 0.1 alpha bvalue in rgba */}
 
+      {/* when i add a custom gradient to tailwind config file i can delete the from gray to #010511 */}
+
       {/* from gray to #010551 large screen height 140vh */}
 
       <Head>
