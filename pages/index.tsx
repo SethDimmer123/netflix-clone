@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import Banner from "../components/Banner"
 import requests from '../utils/requests'
 import { Movie } from '../typing'
+import Row from '../components/Row'
 
 interface Props {
   netflixOriginals: Movie[]// netflix originals is going to be an array of different movies
@@ -60,13 +61,16 @@ const Home = ({
         {/* i am sending the netflix originals to my banner component */}
         <section>
           {/* Row */}
-          {/* Row */}
-          {/* Row */}
-          {/* Row */}
-          {/* Row */}
-          {/* Row */}
-          {/* Row */}
-          {/* Row */}
+          {/* the reason i have an error on the title attribute is becuase
+           i dont have types in my row component  */}
+          <Row title="Trending Now" movies={trendingNow} />
+          <Row title="Top Rated" movies={topRated} />
+          <Row title="Action Thrillers" movies={actionMovies} />
+          {/* My List component */}
+          <Row title="Comedies" movies={comedyMovies} />
+          <Row title="Scary Movies" movies={horrorMovies} />
+          <Row title="Romance Movies" movies={romanceMovies} />
+          <Row title="Documentaries" movies={documentaries} />
         </section>
       </main>
       {/* Modal */}

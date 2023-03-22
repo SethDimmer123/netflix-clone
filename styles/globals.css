@@ -5,7 +5,9 @@
 /* base layer has my html body,,heading tag, and h1 basically all of my basic html tags */
 @layer base{
     body{
-        @apply bg-[#141414] text-white; 
+        @apply bg-[#141414] text-white !scrollbar-thin !scrollbar-track-transparent
+        !scrollbar-thumb-red-600 overflow-x-hidden; 
+
     }
 
     header{
@@ -14,7 +16,7 @@
         /* py is top and bottom padding 
         px is left and right padding */
         /* header fixed on top 
-        w-full is 100%*/
+        w-full is 100% width*/
     }
 }
 

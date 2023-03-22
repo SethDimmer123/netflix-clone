@@ -8,7 +8,11 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require('tailwindcss-textshadow')],
+  plugins: [
+  require('tailwindcss-textshadow'),
+  require('tailwind-scrollbar-hide'),
+  require('tailwind-scrollbar'),
+  ],
 }
 
 // i get a 2nd error (continued from next.config.js) image.tmdb.org is not configured
