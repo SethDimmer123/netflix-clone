@@ -11,7 +11,7 @@ interface Props {
     movies:Movie[]
 }
 
-function Row({title,movies}:Props) {
+function Row({title,movies}:Props) {// carousel function for clicking the buttons to see different movies.
     const rowRef = useRef<HTMLDivElement>(null)//useRef hook i provide a default value 
     // and since i am using typescript i need to 
     // provide what type of element i am connecting it to (<HTMLDivElement>).
@@ -21,7 +21,23 @@ function Row({title,movies}:Props) {
 
     const handleClick = (direction:string) => {
         setIsMoved(true)
+
+        if(rowRef.current) {
+            const {scrollLeft, clientWidth} = rowRef.current
+
+            const scrollTo 
+            = direction === "left" 
+            ? scrollLeft - clientWidth 
+            :scrollLeft + clientWidth // it moves 1672 from 0 when clicking the scroll arrow
+
+            rowRef.current.scrollTo({left:scrollTo,behavior:"smooth"})
+        }
     }
+    // console.log(rowRef.current!.scrollLeft, rowRef.current!.clientWidth)
+    // ! means i check to make sure it is not actually null
+    // in the console i check the client width in the console base on
+    //  how big or small my window is.
+
 
 
   return <div className="h-40 space-y-0.5 md:space-y-2">
@@ -30,8 +46,10 @@ function Row({title,movies}:Props) {
         {title}
     </h2>
     <div className="group relative md:-ml-2">
-        <ChevronLeftIcon className="absolute top-0 bottom-0 left-2 z-40 m-auto h-9 w-9
-        cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100" 
+        <ChevronLeftIcon className={`absolute top-0 bottom-0 left-2 z-40 m-auto h-9 w-9
+        cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100 ${
+            !isMoved && "hidden"
+        }`} 
         onClick={() => handleClick("left")}/>
 
         <div ref={rowRef} className="flex scrollbar-hide items-center space-x-0.5 overflow-x-scroll
@@ -43,8 +61,8 @@ function Row({title,movies}:Props) {
             ))}
         </div>
 
-        <ChevronRightIcon  className="absolute top-0 bottom-0 left-2 z-40 m-auto h-9 w-9
-        cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100"
+        <ChevronRightIcon  className={`absolute top-0 bottom-0 right-2 z-40 m-auto h-9 w-9
+        cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100 `}
         onClick={() => handleClick("right")}/>
     </div>
   </div>

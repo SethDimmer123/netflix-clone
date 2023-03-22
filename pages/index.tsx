@@ -59,7 +59,7 @@ const Home = ({
         {/* Banner */}
         <Banner netflixOriginals={netflixOriginals}/>
         {/* i am sending the netflix originals to my banner component */}
-        <section>
+        <section className='md:space-y-24'>
           {/* Row */}
           {/* the reason i have an error on the title attribute is becuase
            i dont have types in my row component  */}
