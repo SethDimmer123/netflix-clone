@@ -16,8 +16,18 @@ interface Props {
   documentaries: Movie[]
 }
 
+// the reason i am using TYPESCRIPT is it gives me really good intilisense and is really good
+// for production enviorments.
 
-const Home = ({
+// if i am working on big applications i need the intilisense because i might be working on different
+// stuff all the time and prevents me from getting into different sort of error.
+// so i am using a string instead of a number i have to use a number and if i am not using 
+// typescript i might not even know about that.
+// typescript prevents me from using a number instead of a string if i had to use a number.
+// (1:06:37-1:07:27)
+// next i create my typing.d.ts file
+
+const Home = ({ 
   netflixOriginals,  
   actionMovies,
   comedyMovies,
@@ -108,11 +118,6 @@ export const getServerSideProps = async () => {
 }
 // to test it put netflixOriginals in the () on line 8 and use typescript
 
-// the reason i am using typescript is it gives me really good intilisense and is really good
-// for production enviorments.
-
-// if i am working on big applications i need the intilisense because i might be working on different
-// stuff all the time.
 
 
 
