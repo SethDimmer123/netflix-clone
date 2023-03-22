@@ -36,6 +36,7 @@ const Home = ({
   romanceMovies,
   topRated,
   trendingNow,
+  // if one of these is not in my type props(line 8) it will give me an error
 } :Props) => {
   // console.log(netflixOriginals)
   return (
@@ -73,11 +74,15 @@ const Home = ({
   )
 }
 
+
 export default Home
 
 // the way i do server side rendering is i have a function at the bottom or at 
-// the top of this page just not in the export home on line 42
+// the top of this page just not in the export home on line 87
 
+// i can only do the server side rendering on pages not components
+
+// so i send the netflix orginals to my component
 
 export const getServerSideProps = async () => {
   const [
@@ -122,7 +127,4 @@ export const getServerSideProps = async () => {
 
 
 
-// i can only do the server side rendering on pages not components
-
-// so i send the netflix orginals to my component
 

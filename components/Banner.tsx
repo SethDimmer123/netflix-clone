@@ -8,9 +8,9 @@ interface Props {
 }
 // from index.tsx i can now bulid my banner component now.
 function Banner({netflixOriginals}:Props) {
-  const [movie,setMovie] = useState<Movie | null>(null)
+  const [movie,setMovie] = useState<Movie | null>(null)// movie or null
 
-  useEffect(() => {
+  useEffect(() => {// what this will do is gnerate a different index of a movie
     setMovie(
       netflixOriginals[Math.floor(Math.random() * netflixOriginals.length)]
   )
@@ -26,6 +26,10 @@ function Banner({netflixOriginals}:Props) {
     </div>
   </div>
 }
+        // i need the base url i cannot just access 
+        // the backdrop_path or the poster_path tmdb gives me the baseUrl(constants folder)
+        // since i have the url in a folder i can import it and not have to repeat myself
+        // everytime i want to use it.
 
 export default Banner
 
