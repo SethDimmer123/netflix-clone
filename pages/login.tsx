@@ -1,8 +1,9 @@
+import next from "next"
 import Head from "next/head"
-import Image from "next/image"
+import Image from "next/legacy/image"
 
 function Login() {
-  return <div>
+  return <div className="relative flex h-screen w-screen flex col bg-black md:items-center md:justify-center md:bg-transparent">
       {/* really good for seo */}
     <Head>
         <title>Netflix</title>
