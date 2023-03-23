@@ -24,6 +24,7 @@ interface Props {
 // stuff all the time and prevents me from getting into different sort of error.
 // so i am using a string instead of a number i have to use a number and if i am not using 
 // typescript i might not even know about that.
+
 // typescript prevents me from using a number instead of a string if i had to use a number.
 // (1:06:37-1:07:27)
 // next i create my typing.d.ts file
@@ -101,7 +102,7 @@ export const getServerSideProps = async () => {
     romanceMovies,
     documentaries,
   ] = await Promise.all([// using on an await and promise.all to accompany the whole operation
-  // instead of haveing to await for all of the fetch requests.
+  // instead of having to await for all of the fetch requests.
     fetch(requests.fetchNetflixOriginals).then((res) => res.json()),
     fetch(requests.fetchTrending).then((res) => res.json()),
     fetch(requests.fetchTopRated).then((res) => res.json()),

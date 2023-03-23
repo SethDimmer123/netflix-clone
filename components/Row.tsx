@@ -4,7 +4,7 @@ import { useRef, useState } from "react"
 import { Movie } from "../typing"
 import Thumbnail from "./Thumbnail"
 
-interface Props {
+interface Props {// types
     title:string
       // when using firebase
     // movie:Movie | DocumentData
