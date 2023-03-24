@@ -18,8 +18,16 @@ function Login() {//useState hook for logging user in or signing user up
   } = useForm<Inputs>();// use the hook but i am also providing the types
   const onSubmit: SubmitHandler<Inputs> = async (data) => {// this is for when i want to actually log the user in as well as signup a user i need this function
     // console.log(data)
-    // the reason i use an asynchronus function
-  
+    // the reason i use an asynchronus function is i want it to 
+    // be long running task and still be able to respond to other
+    //  event while my other task runs
+    // instead of having to wait until the other task is finished.
+    if(login){
+      // await signIn(data.email,data.password)
+    }else{
+      // await signUp(data.email,data.password)
+    }
+
   };
   // submit handler is the type is form type submit type which will be function
 
@@ -74,13 +82,16 @@ function Login() {//useState hook for logging user in or signing user up
           </label>                                                             
         </div>
 
-        <button className="w-full rounded bg-[#e50914] py-3 font-semibold">
+        <button className="w-full rounded bg-[#e50914] py-3 font-semibold" 
+        onClick={() => setLogin(true)}>
           Sign In
           </button>
 
           <div className="text-[gray]">
             New to Netflix?{' '}
-            <button type="submit" className="text-white hover:underline">
+            <button type="submit" className="text-white hover:underline"
+            onClick={() => setLogin(false)}
+            >
               Sign Up now
               </button>
           </div>
