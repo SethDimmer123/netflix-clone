@@ -1,6 +1,6 @@
 import next from "next"
 import Head from "next/head"
-import Image from "next/legacy/image"
+import Image from "next/image"
 import { useState } from "react"
 
 function Login() {//useState hook for logging user in
@@ -14,11 +14,11 @@ function Login() {//useState hook for logging user in
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Image
-        src="https://rb.gy/p2hphi"
-        layout="fill"
-        className="-z-10 !hidden opacity-60 sm:!inline"
-        objectFit="cover"
-      />
+      src="/netflix-bg.jpg"
+      layout="fill"
+      className="-z-10 !hidden opacity-60 sm:!inline"
+      objectFit="cover" alt={""}/>
+      
      <img
         src="https://rb.gy/ulxxee"
         className="absolute left-4 top-4 cursor-pointer object-contain md:left-10 md:top-6"
