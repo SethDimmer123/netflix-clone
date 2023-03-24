@@ -16,14 +16,14 @@ function Login() {//useState hook for logging user in or signing user up
     // watch, 
     formState: { errors } 
   } = useForm<Inputs>();// use the hook but i am also providing the types
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {// this is for when i want to actually log the user in as well as signup a user i need this function
-    // console.log(data)
+  const onSubmit: SubmitHandler<Inputs> = async ({email,password}) => {// this is for when i want to actually log the user in as well as signup a user i need this function
+    // console.log(data)    //data used to be in the parentheses above
     // the reason i use an asynchronus function is i want it to 
     // be long running task and still be able to respond to other
     //  event while my other task runs
     // instead of having to wait until the other task is finished.
     if(login){
-      // await signIn(data.email,data.password)
+      // await signIn(email,password)
     }else{
       // await signUp(data.email,data.password)
     }
