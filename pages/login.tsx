@@ -13,7 +13,7 @@ function Login() {//useState hook for logging user in or signing user up
   const [login, setLogin] = useState(false)
   const { register, 
     handleSubmit, 
-    // watch, 
+      // watch   
     formState: { errors } 
   } = useForm<Inputs>();// use the hook but i am also providing the types
   const onSubmit: SubmitHandler<Inputs> = async ({email,password}) => {// this is for when i want to actually log the user in as well as signup a user i need this function
