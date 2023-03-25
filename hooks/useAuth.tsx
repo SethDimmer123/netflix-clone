@@ -37,12 +37,13 @@ import {
 
 export const AuthProvider =({children}: AuthProviderProps) => {
     const[loading,setLoading] = useState(false)
-    const [user,setUser]= useState<User | null>(null)
+    const [user,setUser]= useState<User | null>(null)// setting my user
                                 //User gives me firebase account
+                                // or null by default it is null
     const [error,setError] = useState(null) 
     const [initialLoading, setInitialLoading] = useState(true)
     // intialLoading blocks the ui
-    const router = useRouter()
+    const router = useRouter() //using router
 
     // using a useEffect to persist whe user is logged in and i refresh  it will take
     // me back to the log in that is why i need the useEffect
@@ -68,15 +69,16 @@ export const AuthProvider =({children}: AuthProviderProps) => {
 
     // sign Up function
    const signUp = async (email:string,password:string) =>{
-    setLoading(true)
+    setLoading(true) // set to true because i want to sign up the user
 
     await createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
         setUser(userCredential.user)
-        router.push('/')
-        setLoading(false)
+        // if i do not have the user type from firebase on line 40 userCredential.user will not work.
+        router.push('/')// pushing user to home page AFTER the user is logged in
+        setLoading(false) // I SET IT TO FALSE since the user is logged in
     }
-    ).catch((error) => alert(error.message))
-    .finally(()=> setLoading(false))
+    ).catch((error) => alert(error.message))//catching errors and alerting users
+    .finally(()=> setLoading(false))// finally means the setloading will always run either if the promise if fullfilled or rejected
    }
 
        // sign In function
@@ -91,6 +93,7 @@ export const AuthProvider =({children}: AuthProviderProps) => {
         ).catch((error) => alert(error.message))
         .finally(()=> setLoading(false))
        }
+       
     //    logout function
        const logout = async () => {
         setLoading(true)
