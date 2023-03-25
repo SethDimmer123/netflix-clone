@@ -18,7 +18,7 @@ import {
     error: string | null
     loading: boolean
   }
-// creating context to wrapp whole application within the _app.tsx file
+// creating context to wrap whole application within the _app.tsx file
   const AuthContext = createContext<IAuth>({
     // by default
     user:null,
@@ -39,7 +39,31 @@ export const AuthProvider =({children}: AuthProviderProps) => {
     const [user,setUser]= useState<User | null>(null)
                                 //User gives me firebase account
     const [error,setError] = useState(null) 
+    const [initialLoading, setInitialLoading] = useState(true)
+    // intialLoading blocks the ui
     const router = useRouter()
+
+    // using a useEffect to persist whe user is logged in and i refresh  it will take
+    // me back to the log in that is why i need the useEffect
+    useEffect(
+        () =>
+          onAuthStateChanged(auth, (user) => {// accepts the auth instance and gives back the user 
+            // if there is a user is logged in  then i set the user to user and log the user in
+            if (user) {
+              // Logged in...
+              setUser(user)
+              setLoading(false)
+            } else {// otherwise if there is no user i set the user to null and set the Loading to be true and route to the login page.
+              // Not logged in...
+              setUser(null)
+              setLoading(true)
+              router.push('/login')
+            }
+    
+            setInitialLoading(false)
+          }),
+        [auth]
+      )
 
     // sign Up function
    const signUp = async (email:string,password:string) =>{
@@ -82,7 +106,9 @@ export const AuthProvider =({children}: AuthProviderProps) => {
         user,signUp,signIn,loading,logout,error
     }),[user,loading])// usememo only changes when one of the dependancies changes (line 82)
    
-    return <AuthContext.Provider value={memodValue}>{children}</AuthContext.Provider>
+    return <AuthContext.Provider value={memodValue}>
+        {!initialLoading && children} 
+    </AuthContext.Provider> //blocks the whole ui
     //error occuring becuase have not added Auth context 
     // export const AuthProvider
 }
@@ -107,6 +133,9 @@ export const AuthProvider =({children}: AuthProviderProps) => {
 export default function useAuth() {
     return useContext(AuthContext)
 }
+
+
+// to have access to all of the values
 
 
 
