@@ -1,4 +1,5 @@
 import {
+    // functions from firebase
     createUserWithEmailAndPassword,
     onAuthStateChanged,
     signInWithEmailAndPassword,
@@ -104,7 +105,7 @@ export const AuthProvider =({children}: AuthProviderProps) => {
        const memodValue  = useMemo(() => ({// used the useMemo hook to contain all the values 
         // of the AuthContext provider so i can use them
         user,signUp,signIn,loading,logout,error
-    }),[user,loading])// usememo only changes when one of the dependancies changes (line 82)
+    }),[user,loading])// usememo only changes when ONE of the dependancies changes (line 82)
    
     return <AuthContext.Provider value={memodValue}>
         {!initialLoading && children} 
