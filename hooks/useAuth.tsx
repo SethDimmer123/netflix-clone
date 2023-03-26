@@ -46,8 +46,7 @@ export const AuthProvider =({children}: AuthProviderProps) => {// type is AuthPr
                                 //User gives me firebase account
                                 // or null by default it is null
     const [error,setError] = useState(null) 
-    const [initialLoading, setInitialLoading] = useState(true)
-    // intialLoading blocks the ui
+    const [initialLoading, setInitialLoading] = useState(true)// intialLoading blocks the ui
     const router = useRouter() //using router
 
     // using a useEffect to persist whe user is logged in and i refresh it will take
@@ -120,22 +119,33 @@ export const AuthProvider =({children}: AuthProviderProps) => {// type is AuthPr
         // of the AuthContext provider so i can use them
         user,signUp,signIn,loading,logout,error
     }),[user,loading])// usememo only changes when 
-    // ONE of the dependancies changes (line 118)
-   
+    // ONE of the dependancies changes (line 122)
+
+
+  //  if there is NO initialLoading then only do i want to show the children which means i will block the UI.
     return <AuthContext.Provider value={memodValue}> 
         {!initialLoading && children} 
     </AuthContext.Provider>
-    // export const AuthProvider
+    // export const AuthProvider  
+    //when AuthProvider is errored that means i need a value which
+    // in this case is the user and loading for example so i can use them
 }
 // function useAuth
 
 // export default useAuth
 
+export default function useAuth() {
+    return useContext(AuthContext)
+    // i use useContext to access my createContext default values 
+}
+
+
+// ALL OF THE CHILDREN WILL HAVE A type called React.ReactNode
 
 // const[user,setUser] = useState()
 // <div>useAuth</div>
-// instead of returning jsx which is the div above which is what i do with the components
-
+// instead of returning jsx which is the div above which is what i do 
+// with the components
 // i just return the variable of my state which in this case is user
 // and that is how i create custom hooks
 
@@ -149,13 +159,6 @@ export const AuthProvider =({children}: AuthProviderProps) => {// type is AuthPr
 // Let's only export the `useAuth` hook instead of the context.
 // We only want to use the hook directly and never the context component.
 
-export default function useAuth() {
-    return useContext(AuthContext)
-    // i use useContext to access my createContext default values 
-}
-
-
-// ALL OF THE CHILDREN WILL HAVE A type called React.ReactNode
 
 
 
