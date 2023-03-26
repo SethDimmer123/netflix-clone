@@ -2,7 +2,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['image.tmdb.org','rb.gy'],
+    domains: ['image.tmdb.org','rb.gy',images.imageSizes],
   },
 }
 // image with src error because i am using a next.js image component

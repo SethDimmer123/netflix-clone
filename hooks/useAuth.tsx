@@ -11,7 +11,7 @@ import {
   import { createContext, useContext, useEffect, useMemo, useState } from 'react'
   import { auth } from '../firebase'
 
-  interface IAuth {//type is IAuth
+  interface IAuth {
     user: User | null
     signUp: (email: string, password: string) => Promise<void>
     // signup and signout accepts email and password
@@ -24,7 +24,7 @@ import {
   const AuthContext = createContext<IAuth>({//Default value 
     // by default
     user:null,
-    signUp: async () => {},// asynchronus function returns back an object
+    signUp: async () => {},// asynhcronus function returns back an object
     signIn: async () => {},
     logout: async () => {},
     error:null, 
@@ -115,7 +115,7 @@ export const AuthProvider =({children}: AuthProviderProps) => {// type is AuthPr
         user,signUp,signIn,loading,logout,error
     }),[user,loading])// usememo only changes when ONE of the dependancies changes (line 82)
    
-    return <AuthContext.Provider value={memodValue}> //
+    return <AuthContext.Provider value={memodValue}> 
         {!initialLoading && children} 
     </AuthContext.Provider>
     // export const AuthProvider
@@ -140,7 +140,8 @@ export const AuthProvider =({children}: AuthProviderProps) => {// type is AuthPr
 
 export default function useAuth() {
     return useContext(AuthContext)
-}// to have access to all of the values
+}
+// to have access to all of the values
 
 
 
