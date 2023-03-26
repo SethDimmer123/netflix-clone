@@ -2,6 +2,7 @@ import Head from "next/head"
 import Image from "next/image"
 import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form";
+import useAuth from "../hooks/useAuth";
 
 // i have to create interfaces for inputs since it is a type and i need to define it
 interface Inputs {
@@ -11,6 +12,7 @@ interface Inputs {
 
 function Login() {//useState hook for logging user in or signing user up
   const [login, setLogin] = useState(false)
+  const {signIn,signUp} = useAuth()
   const { register, 
     handleSubmit, 
       // watch   
@@ -23,9 +25,9 @@ function Login() {//useState hook for logging user in or signing user up
     //  event while my other task runs
     // instead of having to wait until the other task is finished.
     if(login){
-      // await signIn(email,password)
+             signIn(email, password)
     }else{
-      // await signUp(data.email,data.password)
+      await signUp(email, password)
     }
 
   };

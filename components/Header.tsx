@@ -1,10 +1,12 @@
 import {BellIcon, MagnifyingGlassIcon} from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { useEffect,useState } from "react";
+import useAuth from "../hooks/useAuth";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false) 
-  {/**be default the boolean value is false */}
+  {/**by default the boolean value is false */}
+  const {logout} = useAuth()
 
   // useEffect will only run on a single mount.
 
@@ -58,10 +60,12 @@ function Header() {
       <p className="hidden lg:inline">Kids</p>
       {/* large breakoint 1024px hidden by default on phones */}
       <BellIcon className=" h-6 w-6"/>
-      <Link href="http:/account">
+      {/* <Link href="http:/account"> */}
         {/*  href is a required attribute when using the link component when using typescript*/}
-        <img src="https://rb.gy/g1pwyx" alt="" className="cursor-pointer rounded"/>
-      </Link>
+        <img 
+        onClick={logout}
+        src="https://rb.gy/g1pwyx" alt="" className="cursor-pointer rounded"/>
+      {/* </Link> */}
     </div>
   </header>
 }

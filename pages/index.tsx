@@ -5,6 +5,7 @@ import Banner from "../components/Banner"
 import requests from '../utils/requests'
 import { Movie } from '../typing'
 import Row from '../components/Row'
+import useAuth from '../hooks/useAuth'
 
 interface Props {
   netflixOriginals: Movie[]// netflix originals is going to be an array of different movies
@@ -40,6 +41,13 @@ const Home = ({
   trendingNow,
   // if one of these is not in my type props(line 8) it will give me an error
 } :Props) => {
+  const {logout,loading} = useAuth()
+  // const showModal = useRecoilValue()
+  // const [showModal,setShowModal] = useState(false) same exact thiing as const showModal = useRecoilValue()
+  
+  if(loading) return (
+    null
+  )
   // console.log(netflixOriginals)
   return (
     <div className="relative h-screen bg-gradient-to-b from-gray-900/10
