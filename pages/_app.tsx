@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <Component {...pageProps} />
     </AuthProvider>
   )
-}
+}// the AuthProvider component makes the react context available to the application
 
 export default MyApp
 

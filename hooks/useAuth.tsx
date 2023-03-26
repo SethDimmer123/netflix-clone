@@ -21,20 +21,22 @@ import {
     loading: boolean
   }
 // creating context to wrap whole application within the _app.tsx file
-  const AuthContext = createContext<IAuth>({//Default value 
+  const AuthContext = createContext<IAuth>({//Default values
+       // createContext allows me to 
 
-    user:null,   // by default
-    signUp: async () => {},// asyncronus function of a promise(line 16) returns back an object
+    user:null,   // by default these are my createContext values
+    signUp: async () => {},
     signIn: async () => {},
     logout: async () => {},
-    error:null, 
+    error:null, //
     loading:false,
+    // asyncronus function returns back an object lines 28-30
   })
 //   creating context after AuthProviderProps
 
   interface AuthProviderProps{
     children:React.ReactNode //React child type    //whats the type for children in typescript?
-    //React.ReactNode is the type for the children(signUp,signIn,logout 
+    //React.ReactNode is the type for the children(signUp,signIn,logout)
   }
 
   
@@ -49,7 +51,7 @@ export const AuthProvider =({children}: AuthProviderProps) => {// type is AuthPr
     // intialLoading blocks the ui
     const router = useRouter() //using router
 
-    // using a useEffect to persist whe user is logged in and i refresh  it will take
+    // using a useEffect to persist whe user is logged in and i refresh it will take
     // me back to the log in that is why i need the useEffect
     useEffect(
         () =>
@@ -107,6 +109,10 @@ export const AuthProvider =({children}: AuthProviderProps) => {// type is AuthPr
         }).catch((error) => alert(error.message)).finally(() => setLoading(false))
        }
 
+      //  after creating my functions i want to have a state to return the 
+      // children (signIn,signOut,signUp) of the AuthProvider
+      // annd wrap my whole application
+
 
 
        const memodValue  = useMemo(() => ({
@@ -140,11 +146,17 @@ export const AuthProvider =({children}: AuthProviderProps) => {// type is AuthPr
 // IN MY APPLICATION ALL of the functions are my children in the application
 // and the type they all have is the React.ReactNode type
 
-export default function useAuth() {
-    return useContext(AuthContext)//creates the context of what i will wrap around my application
-}
-// to have access to all of the values
 
+// Let's only export the `useAuth` hook instead of the context.
+// We only want to use the hook directly and never the context component.
+
+export default function useAuth() {
+    return useContext(AuthContext)
+    // i use useContext to access my createContext default values 
+}
+
+
+// ALL OF THE CHILDREN WILL HAVE A type called React.ReactNode
 
 
 
