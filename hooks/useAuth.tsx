@@ -1,3 +1,4 @@
+// created custom hook and authentication
 import {
     // functions from firebase
     createUserWithEmailAndPassword,
@@ -41,12 +42,12 @@ import {
   
 // const function useAuth       AuthProvider accepts children
 export const AuthProvider =({children}: AuthProviderProps) => {// type is AuthProviderProps
-    const[loading,setLoading] = useState(false)
+    const[loading,setLoading] = useState(false) //when user is logging in the loading will become true
     const [user,setUser]= useState<User | null>(null)// setting my user
                                 //User gives me firebase account
                                 // or null by default it is null
     const [error,setError] = useState(null) 
-    const [initialLoading, setInitialLoading] = useState(true)// intialLoading blocks the ui
+    const [initialLoading, setInitialLoading] = useState(true)// initialLoading blocks the ui when the user logs in
     const router = useRouter() //using router
 
     // using a useEffect to persist when user is logged in and i refresh it will take
@@ -59,7 +60,8 @@ export const AuthProvider =({children}: AuthProviderProps) => {// type is AuthPr
               // Logged in...
               setUser(user)
               setLoading(false)
-            } else {// otherwise if there is no user i set the user to null and set the Loading to be true and route to the login page.
+            } else {// otherwise if there is no user i set the user to null and set the Loading to be true 
+                                           // and route to the login page.
               // Not logged in...
               setUser(null)
               setLoading(true)
