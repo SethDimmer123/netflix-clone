@@ -49,12 +49,12 @@ export const AuthProvider =({children}: AuthProviderProps) => {// type is AuthPr
     const [initialLoading, setInitialLoading] = useState(true)// intialLoading blocks the ui
     const router = useRouter() //using router
 
-    // using a useEffect to persist whe user is logged in and i refresh it will take
+    // using a useEffect to persist when user is logged in and i refresh it will take
     // me back to the log in that is why i need the useEffect
     useEffect(
         () =>
           onAuthStateChanged(auth, (user) => {// accepts the auth instance and gives back the user 
-            // if there is a user is logged in  then i set the user to user and log the user in
+            // if there is a user is logged in then i set the user to user and log the user in
             if (user) {
               // Logged in...
               setUser(user)
