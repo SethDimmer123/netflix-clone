@@ -11,31 +11,36 @@ import {
   import { createContext, useContext, useEffect, useMemo, useState } from 'react'
   import { auth } from '../firebase'
 
-  interface IAuth {
+  interface IAuth {//type is IAuth
     user: User | null
-    signUp: (email: string, password: string) => Promise<void>// signup and signout accepts email and password
+    signUp: (email: string, password: string) => Promise<void>
+    // signup and signout accepts email and password
     signIn: (email: string, password: string) => Promise<void>
     logout: () => Promise<void>
     error: string | null
     loading: boolean
   }
 // creating context to wrap whole application within the _app.tsx file
-  const AuthContext = createContext<IAuth>({
+  const AuthContext = createContext<IAuth>({//Default value 
     // by default
     user:null,
-    signUp: async () => {},
+    signUp: async () => {},// asynchronus function returns back an object
     signIn: async () => {},
     logout: async () => {},
     error:null, 
-    loading:false
+    loading:false,
   })
 //   creating context after AuthProviderProps
 
   interface AuthProviderProps{
-    children:React.ReactNode //type for the children for Auth context provider
+    children:React.ReactNode //React child type    //whats the type for children in typescript.
+    //React.ReactNode is the type for the children(signUp,signIn,logout 
+    // functions) for AuthProvider/
   }
 
-export const AuthProvider =({children}: AuthProviderProps) => {
+  
+// const function useAuth       AuthProvider accepts children
+export const AuthProvider =({children}: AuthProviderProps) => {// type is AuthProviderProps
     const[loading,setLoading] = useState(false)
     const [user,setUser]= useState<User | null>(null)// setting my user
                                 //User gives me firebase account
@@ -93,13 +98,13 @@ export const AuthProvider =({children}: AuthProviderProps) => {
         ).catch((error) => alert(error.message))
         .finally(()=> setLoading(false))
        }
-       
+
     //    logout function
        const logout = async () => {
-        setLoading(true)
+        setLoading(true)// im already logged in
 
-        signOut(auth).then(() => {
-            setUser(null)
+        signOut(auth).then(() => {// signOut(auth returns a promise USE .THEN METHOD)
+            setUser(null)// signs user out of account
         }).catch((error) => alert(error.message)).finally(() => setLoading(false))
        }
 
@@ -110,10 +115,9 @@ export const AuthProvider =({children}: AuthProviderProps) => {
         user,signUp,signIn,loading,logout,error
     }),[user,loading])// usememo only changes when ONE of the dependancies changes (line 82)
    
-    return <AuthContext.Provider value={memodValue}>
+    return <AuthContext.Provider value={memodValue}> //
         {!initialLoading && children} 
-    </AuthContext.Provider> //blocks the whole ui
-    //error occuring becuase have not added Auth context 
+    </AuthContext.Provider>
     // export const AuthProvider
 }
 // function useAuth
@@ -129,17 +133,14 @@ export const AuthProvider =({children}: AuthProviderProps) => {
 // and that is how i create custom hooks
 
 
-// the Auth Provider is a wrapper and type my WHOLE APPLICATION
+// the Auth Provider is a wrapper and type of my WHOLE APPLICATION
 
 // IN MY APPLICATION ALL of the functions are my children in the application
 // and the type they all have is the React.ReactNode type
 
 export default function useAuth() {
     return useContext(AuthContext)
-}
-
-
-// to have access to all of the values
+}// to have access to all of the values
 
 
 
