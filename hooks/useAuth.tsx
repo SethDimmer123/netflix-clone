@@ -11,10 +11,10 @@ import {
   import { createContext, useContext, useEffect, useMemo, useState } from 'react'
   import { auth } from '../firebase'
 
-  interface IAuth {
+  interface IAuth {//IAuth is a type
     user: User | null
     signUp: (email: string, password: string) => Promise<void>
-    // signup and signIn accepts email and password
+    // signup and signIn accepts email and password and returns me a promise
     signIn: (email: string, password: string) => Promise<void>
     logout: () => Promise<void>
     error: string | null
@@ -23,8 +23,7 @@ import {
 // creating context to wrap whole application within the _app.tsx file
   const AuthContext = createContext<IAuth>({//Default value 
 
-    // by default
-    user:null,
+    user:null,   // by default
     signUp: async () => {},// asyncronus function of a promise(line 16) returns back an object
     signIn: async () => {},
     logout: async () => {},
@@ -74,16 +73,16 @@ export const AuthProvider =({children}: AuthProviderProps) => {// type is AuthPr
 
     // sign Up function
    const signUp = async (email:string,password:string) =>{
-    setLoading(true) // set to true because i want to sign up the user
+    setLoading(true) // true because i want to sign up the user
 
     await createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
         setUser(userCredential.user)
         // if i do not have the user type from firebase on line 40 userCredential.user will not work.
         router.push('/')// pushing user to home page AFTER the user is logged in
-        setLoading(false) // I SET IT TO FALSE since the user is logged in
+        setLoading(false) // SET IT TO FALSE the user is logged in
     }
     ).catch((error) => alert(error.message))//catching errors and alerting users
-    .finally(()=> setLoading(false))// finally means the setloading will always run either if the promise if fullfilled or rejected
+    .finally(()=> setLoading(false))// finally means setloading will always run either if the promise if fullfilled or rejected
    }
 
        // sign In function
