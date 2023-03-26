@@ -14,7 +14,7 @@ import {
   interface IAuth {
     user: User | null
     signUp: (email: string, password: string) => Promise<void>
-    // signup and signout accepts email and password
+    // signup and signIn accepts email and password
     signIn: (email: string, password: string) => Promise<void>
     logout: () => Promise<void>
     error: string | null
@@ -22,9 +22,10 @@ import {
   }
 // creating context to wrap whole application within the _app.tsx file
   const AuthContext = createContext<IAuth>({//Default value 
+
     // by default
     user:null,
-    signUp: async () => {},// asynhcronus function returns back an object
+    signUp: async () => {},// asyncronus function of a promise(line 16) returns back an object
     signIn: async () => {},
     logout: async () => {},
     error:null, 
@@ -33,9 +34,8 @@ import {
 //   creating context after AuthProviderProps
 
   interface AuthProviderProps{
-    children:React.ReactNode //React child type    //whats the type for children in typescript.
+    children:React.ReactNode //React child type    //whats the type for children in typescript?
     //React.ReactNode is the type for the children(signUp,signIn,logout 
-    // functions) for AuthProvider/
   }
 
   
@@ -110,10 +110,13 @@ export const AuthProvider =({children}: AuthProviderProps) => {// type is AuthPr
 
 
 
-       const memodValue  = useMemo(() => ({// used the useMemo hook to contain all the values 
+       const memodValue  = useMemo(() => ({
+        // used the useMemo hook to 
+        // contain all the values 
         // of the AuthContext provider so i can use them
         user,signUp,signIn,loading,logout,error
-    }),[user,loading])// usememo only changes when ONE of the dependancies changes (line 82)
+    }),[user,loading])// usememo only changes when 
+    // ONE of the dependancies changes (line 118)
    
     return <AuthContext.Provider value={memodValue}> 
         {!initialLoading && children} 
@@ -139,7 +142,7 @@ export const AuthProvider =({children}: AuthProviderProps) => {// type is AuthPr
 // and the type they all have is the React.ReactNode type
 
 export default function useAuth() {
-    return useContext(AuthContext)
+    return useContext(AuthContext)//creates the context of what i will wrap around my application
 }
 // to have access to all of the values
 
