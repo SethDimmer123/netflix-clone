@@ -11,4 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 export default MyApp
 
+// a provider is just a wrap around all of the components i want to have access
+// and change the state
+
 

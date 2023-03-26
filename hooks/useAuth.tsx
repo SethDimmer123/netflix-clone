@@ -20,10 +20,9 @@ import {
     error: string | null
     loading: boolean
   }
-// creating context to wrap whole application within the _app.tsx file
-  const AuthContext = createContext<IAuth>({//Default values
-       // createContext allows me to 
-
+// creating context to wrap whole application within the _app.tsx file i create context first
+  const AuthContext = createContext<IAuth>({//Default values-- am i logged in or am i not
+    // creates my context for my IAuth type for my children if there is a user or not (example line15)
     user:null,   // by default these are my createContext values
     signUp: async () => {},
     signIn: async () => {},
