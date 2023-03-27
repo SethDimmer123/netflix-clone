@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import Header from '../components/Header'
 import Banner from "../components/Banner"
 import requests from '../utils/requests'
@@ -41,7 +40,7 @@ const Home = ({
   trendingNow,
   // if one of these is not in my type props(line 8) it will give me an error
 } :Props) => {
-  const {logout,loading} = useAuth()
+  const {logout, loading} = useAuth()
   // const showModal = useRecoilValue()
   // const [showModal,setShowModal] = useState(false) same exact thiing as const showModal = useRecoilValue()
   

@@ -28,7 +28,7 @@ import {
     signUp: async () => {},
     signIn: async () => {},
     logout: async () => {},
-    error:null, //
+    error:null, 
     loading:false,
     // asyncronus function returns back an object lines 28-30
   })

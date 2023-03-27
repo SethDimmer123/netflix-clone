@@ -1,4 +1,5 @@
 import Image from "next/image"
+import React from "react"
 import { Movie } from "../typing"
 
 
@@ -16,7 +17,7 @@ function Thumbnail({movie}: Props) {// this way of putting props is called objec
         <Image
         src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path || movie.poster_path}`}
             className="rounded-sm object-cover md:rounded"
-            layout="fill" alt={""}      />
+            layout="fill"  alt={""}     />
     </div>
   )
 }

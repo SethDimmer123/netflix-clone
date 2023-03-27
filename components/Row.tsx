@@ -1,4 +1,4 @@
-
+import { DocumentData } from 'firebase/firestore'
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid"
 import { useRef, useState } from "react"
 import { Movie } from "../typing"
