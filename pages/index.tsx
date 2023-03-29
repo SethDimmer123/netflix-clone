@@ -7,6 +7,7 @@ import Row from '../components/Row'
 import useAuth from '../hooks/useAuth'
 import { modalState } from '../atoms/modalAtom'
 import { useRecoilValue } from 'recoil'
+import Modal from '../components/Modal'
 
 interface Props {
   netflixOriginals: Movie[]// netflix originals is going to be an array of different movies
@@ -86,6 +87,7 @@ const Home = ({
         </section>
       </main>
       {/* Modal */}
+      {showModal && <Modal />}
     </div>
   )
 }
