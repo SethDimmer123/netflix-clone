@@ -46,10 +46,16 @@ const Home = ({
   const {loading} = useAuth()
   const showModal = useRecoilValue(modalState)
   // const [showModal,setShowModal] = useState(false) same exact thiing as const showModal = useRecoilValue()
+
+  // loading state protecting ui
+  const subscription = false
   
-  if(loading) return (
-    null
+  if(loading || subscription === null) return null // if there is loading or any subscription and if the subscription equals to null(no subscription) then return null.
+
+  if(!subscription) return (// if there is no subscription return the plans
+    <div>plans</div>
   )
+  
   // console.log(netflixOriginals)
   return (
     <div className="relative h-screen bg-gradient-to-b from-gray-900/10
