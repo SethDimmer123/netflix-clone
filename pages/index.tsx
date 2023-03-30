@@ -8,6 +8,7 @@ import useAuth from '../hooks/useAuth'
 import { modalState } from '../atoms/modalAtom'
 import { useRecoilValue } from 'recoil'
 import Modal from '../components/Modal'
+import Plans from '../components/Plans'
 
 interface Props {
   netflixOriginals: Movie[]// netflix originals is going to be an array of different movies
@@ -52,9 +53,10 @@ const Home = ({
   
   if(loading || subscription === null) return null // if there is loading or any subscription and if the subscription equals to null(no subscription) then return null.
 
-  if(!subscription) return (// if there is no subscription return the plans
-    <div>plans</div>
-  )
+  // if there is no subscription return the plans (blocks my ui) with const subscription false
+  // day 3 stripe steps very important 0:00-19:02
+  if(!subscription) return <Plans/>
+  
   
   // console.log(netflixOriginals)
   return (
