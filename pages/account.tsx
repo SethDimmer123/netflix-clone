@@ -5,6 +5,7 @@ import { GetStaticProps } from "next";
 import useAuth from "../hooks/useAuth";
 import useSubscription from "../hooks/useSubscription";
 import payments from "../lib (LIBRARY FOLDER)/stripe";
+import Membership from "../components/Membership";
 
 interface Props {
   products: Product[];
@@ -50,7 +51,7 @@ function account({ products }: Props) {
           </div>
         </div>
 
-        {/* <Membership/> */}
+        <Membership/>
 
         <div
           className="mt-6 grid grid-cols-1 gap-x-4 border px-4 py-4 
