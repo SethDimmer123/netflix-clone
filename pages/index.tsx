@@ -56,7 +56,7 @@ const Home = ({
   // const [showModal,setShowModal] = useState(false) same exact thiing as const showModal = useRecoilValue()
 
   // loading state protecting ui
-  const subscription = false
+  const subscription = true
   
   if(loading || subscription === null) return null 
   // if there is loading or any subscription and if the subscription equals to null(no subscription) then return null.
