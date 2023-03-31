@@ -57,6 +57,7 @@ function Plans() {
             </div>
 
             {/* Table */}
+            {/* created plans stripe product tab on dasboard stripe */}
             <button>Subscribe</button>
         </div>
     </main>

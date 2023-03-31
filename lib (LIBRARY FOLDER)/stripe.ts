@@ -15,5 +15,12 @@ import {
         price:priceId,
         success_url: window.location.origin, //uses actual domain value instead of localhost:3000
         cancel_url: window.location.origin,
-    }).then((snapshot) => window.location.assign(snapshot.url))
+    }).then((snapshot) => window.location.assign(snapshot.url))//assigning navigates to the given URL which is INSIDE parentheses.
+    //.then because it is a promise
+    .catch((error) => console.log(error.message))
   }
+
+//   if all of this above is successful THEN I WANT TO navigate to a stripe payment portal.
+
+export {loadCheckout}
+export default payments
