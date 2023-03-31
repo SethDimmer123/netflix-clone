@@ -9,6 +9,8 @@ import { modalState } from '../atoms/modalAtom'
 import { useRecoilValue } from 'recoil'
 import Modal from '../components/Modal'
 import Plans from '../components/Plans'
+import { getProducts,Product } from '@stripe/firestore-stripe-payments'
+import payments from '../lib (LIBRARY FOLDER)/stripe'
 
 interface Props {
   netflixOriginals: Movie[]// netflix originals is going to be an array of different movies
@@ -19,6 +21,7 @@ interface Props {
   horrorMovies: Movie[]
   romanceMovies: Movie[]
   documentaries: Movie[]
+  products:Product[]
 }
 
 // the reason i am using TYPESCRIPT is it gives me really good intilisense and is really good
@@ -42,8 +45,10 @@ const Home = ({
   romanceMovies,
   topRated,
   trendingNow,
+  products
   // if one of these is not in my type props(line 8) it will give me an error
 } :Props) => {
+  console.log(products)
   const {loading} = useAuth()
   const showModal = useRecoilValue(modalState)
   // const [showModal,setShowModal] = useState(false) same exact thiing as const showModal = useRecoilValue()
@@ -111,6 +116,11 @@ export default Home
 // so i send the netflix orginals to my component
 
 export const getServerSideProps = async () => {
+  const products = await getProducts(payments, {
+    includePrices:true,
+    activeOnly:true // if i delete 1 of the 3 plans(products) it is no longer active that si what that means.
+  }).then((res) => res).catch((error) => console.log(error.message));
+
   const [
     netflixOriginals,
     trendingNow,
@@ -143,6 +153,7 @@ export const getServerSideProps = async () => {
       horrorMovies: horrorMovies.results,
       romanceMovies: romanceMovies.results,
       documentaries: documentaries.results,
+      products,
     },
   }// in next.js i have to return something called props i can actually access it 
   // on top of the application NextPage
