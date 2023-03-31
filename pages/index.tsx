@@ -9,8 +9,9 @@ import { modalState } from '../atoms/modalAtom'
 import { useRecoilValue } from 'recoil'
 import Modal from '../components/Modal'
 import Plans from '../components/Plans'
-import { getProducts,Product } from '@stripe/firestore-stripe-payments'
+import { getProducts, Product } from '@stripe/firestore-stripe-payments'
 import payments from '../lib (LIBRARY FOLDER)/stripe'
+
 
 interface Props {
   netflixOriginals: Movie[]// netflix originals is going to be an array of different movies
@@ -48,7 +49,8 @@ const Home = ({
   products
   // if one of these is not in my type props(line 8) it will give me an error
 } :Props) => {
-  console.log(products)
+  // console.log(products)
+
   const {loading} = useAuth()
   const showModal = useRecoilValue(modalState)
   // const [showModal,setShowModal] = useState(false) same exact thiing as const showModal = useRecoilValue()
@@ -56,11 +58,13 @@ const Home = ({
   // loading state protecting ui
   const subscription = false
   
-  if(loading || subscription === null) return null // if there is loading or any subscription and if the subscription equals to null(no subscription) then return null.
+  if(loading || subscription === null) return null 
+  // if there is loading or any subscription and if the subscription equals to null(no subscription) then return null.
 
   // if there is no subscription return the plans (blocks my ui) with const subscription false
   // day 3 stripe steps very important 0:00-19:02
-  if(!subscription) return <Plans/>
+  if(!subscription) return <Plans products={products}/>
+  
   
   
   // console.log(netflixOriginals)

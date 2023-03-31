@@ -1,9 +1,15 @@
 import { CheckIcon } from "@heroicons/react/24/solid"
+import { Product } from "@stripe/firestore-stripe-payments";
 import Head from "next/head"
 import Link from "next/link"
 import useAuth from "../hooks/useAuth"
+import Table from "./Table";
 
-function Plans() {
+interface Props {
+    products:Product[]
+}
+
+function Plans({products}:Props) {
     const {logout} = useAuth() //the useAuth hook contains all of my states: signIn,logout,user,loading,signUp,error
 
   return (
@@ -49,14 +55,15 @@ function Plans() {
         </ul>
 
         <div className="mt-4 flex flex-col space-y-4">
-            <div className="flex w-full items-center justify-center 
-            self-end md:w-3/5">
+            <div className="flex w-full items-center justify-center self-end md:w-3/5">
                 {/* dynamically get my subscription plans */}
-                
+                {products.map((product) => (//mapped through every single product
+                    <div key={product.id} className="planBox">{product.name}</div>
+                ))}
             </div>
 
-            {/* Table */}
-            {/* created plans stripe product tab on dasboard stripe */}
+            <Table/>
+            {/* created plans stripe product tab on dashboard stripe */}
             <button>Subscribe</button>
         </div>
     </main>
