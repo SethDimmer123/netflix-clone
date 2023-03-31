@@ -35,6 +35,6 @@ const goToBillingPortal = async () => {
 
 
 
-export {loadCheckout}
+export {loadCheckout, goToBillingPortal}
 export default payments
 
