@@ -61,12 +61,12 @@ function Header() {
       <p className="hidden lg:inline">Kids</p>
       {/* large breakoint 1024px hidden by default on phones */}
       <BellIcon className=" h-6 w-6"/>
-      {/* <Link href="http:/account"> */}
+      <Link href="http:/account">
         {/*  href is a required attribute when using the link component when using typescript*/}
         <img 
         onClick={logout}
         src="https://rb.gy/g1pwyx" alt="" className="cursor-pointer rounded"/>
-      {/* </Link> */}
+      </Link>
     </div>
   </header>
 }

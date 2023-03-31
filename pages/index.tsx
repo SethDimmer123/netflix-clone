@@ -11,6 +11,7 @@ import Modal from '../components/Modal'
 import Plans from '../components/Plans'
 import { getProducts, Product } from '@stripe/firestore-stripe-payments'
 import payments from '../lib (LIBRARY FOLDER)/stripe'
+import useSubscription from '../hooks/useSubscription'
 
 
 interface Props {
@@ -51,12 +52,12 @@ const Home = ({
 } :Props) => {
   // console.log(products)
 
-  const {loading} = useAuth()
+  const {loading,user} = useAuth()
   const showModal = useRecoilValue(modalState)
   // const [showModal,setShowModal] = useState(false) same exact thiing as const showModal = useRecoilValue()
 
   // loading state protecting ui
-  const subscription = true
+  const subscription = useSubscription(user)
   
   if(loading || subscription === null) return null 
   // if there is loading or any subscription and if the subscription equals to null(no subscription) then return null.
