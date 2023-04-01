@@ -60,6 +60,12 @@ function Modal() {
     fetchMovie()
     },[movie])
 
+    const handleClose = () => {
+        setShowModal(false)
+        setMovie(null)
+        toast.dismiss()
+      }
+
       // Find all the movies in the user's list
   useEffect(() => {
     if (user) {
@@ -70,46 +76,50 @@ function Modal() {
     }
   }, [db, movie?.id])
 
-  // Check if the movie is already in the user's list
-  useEffect(
-    () =>
-      setAddedToList(
-        movies.findIndex((result) => result.data().id === movie?.id) !== -1
-      ),
-    [movies]
-  )
-
-    const handleList = async () => {
-        if(addedToList) {
-            await deleteDoc(doc(db, "customer",user!.uid, "myList", movie?.id.toString()!)
-            ) //database and collection of customers i want to delete
-
-            toast(`${movie?.title || movie?.original_name} has been removed from My List`, {
-            duration: 8000,
+    // Check if the movie is already in the user's list
+    useEffect(
+        () =>
+          setAddedToList(
+            movies.findIndex((result) => result.data().id === movie?.id) !== -1
+          ),
+        [movies]
+      )
+    
+      const handleList = async () => {
+        if (addedToList) {
+          await deleteDoc(
+            doc(db, 'customers', user!.uid, 'myList', movie?.id.toString()!)
+          )
+    
+          toast(
+            `${movie?.title || movie?.original_name} has been removed from My List`,
+            {
+              duration: 8000,
+              style: toastStyle,
             }
-           )
-        }else {
-            await setDoc(doc(db,"customers", user!.uid,"myList", movie?.id.toString()!), 
-            {...movie}
-            )
-
-            toast(`${movie?.title || movie?.original_name} has been added to My List`, {
-                duration: 8000,
-                }
-            )
+          )
+        } else {
+          await setDoc(
+            doc(db, 'customers', user!.uid, 'myList', movie?.id.toString()!),
+            {
+              ...movie,
+            }
+          )
+    
+          toast(
+            `${movie?.title || movie?.original_name} has been added to My List.`,
+            {
+              duration: 8000,
+              style: toastStyle,
+            }
+          )
         }
-    }
+      }
 
-
-    const handleClose = () => {
-        setShowModal(false)
-    }
-
-    console.log(trailer)
 
 
   return( <MuiModal open={showModal} onClose={handleClose} 
-    className="fixex !top-7 left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden
+    className="fixed !top-7 left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden
     overflow-y-scroll rounded-md scrollbar-hide">
     <>
     <Toaster position='bottom-center'/>
