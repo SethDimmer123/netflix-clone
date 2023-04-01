@@ -1,27 +1,26 @@
-import { collection, doc, DocumentData, onSnapshot } from "firebase/firestore"
-import { useEffect, useState } from "react"
-import { db } from "../firebase"
-import { Movie } from "../typing"
+import { collection, DocumentData, onSnapshot } from 'firebase/firestore'
+import { useEffect, useState } from 'react'
+import { db } from '../firebase'
+import { Movie } from '../typing'
 
-function useList(uid:string | undefined) {// retrieving uid of a customer (adding the movie to the database for the customer)
-const [list,setList] = useState<Movie[] | DocumentData[]>([])
-  return list
+function useList(uid: string | undefined) {
+  const [list, setList] = useState<DocumentData[] | Movie[]>([])
 
   useEffect(() => {
-    if(!uid) return
+    if (!uid) return
 
     return onSnapshot(
-        collection(db,"customers",uid,"myList"), 
-    (snapshot) => {
+      collection(db, 'customers', uid, 'myList'),
+      (snapshot) => {
         setList(
-            snapshot.docs.map((doc) => ({
-                id: doc.id,
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
             ...doc.data(),
-        }))
-      )
-    }
-  )
-  },[db,uid])
+          }))
+        )
+      }
+    )
+  }, [db, uid])
 
   return list
 }
