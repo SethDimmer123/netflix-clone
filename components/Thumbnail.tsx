@@ -1,3 +1,4 @@
+import { DocumentData } from "firebase/firestore"
 import Image from "next/image"
 import React from "react"
 import { useRecoilState } from "recoil"
@@ -8,8 +9,7 @@ import { Movie } from "../typing"
 
 interface Props{// a single movie
   // when using firebase
-    // movie:Movie | DocumentData
-    movie:Movie
+    movie:Movie | DocumentData
 }
 
 function Thumbnail({movie}: Props) {// this way of putting props is called object destructuring

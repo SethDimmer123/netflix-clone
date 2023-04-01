@@ -7,8 +7,7 @@ import Thumbnail from "./Thumbnail"
 interface Props {// types
     title:string
       // when using firebase
-    // movie:Movie | DocumentData
-    movies:Movie[]
+    movies:Movie[] | DocumentData[]
 }
 
 function Row({title,movies}:Props) {// carousel function for clicking the buttons to see different movies.

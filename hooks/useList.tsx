@@ -1,3 +1,5 @@
+// i am retrieving my list of movies
+
 import { collection, DocumentData, onSnapshot } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { db } from '../firebase'

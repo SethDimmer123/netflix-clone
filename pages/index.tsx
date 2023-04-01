@@ -5,13 +5,14 @@ import requests from '../utils/requests'
 import { Movie } from '../typing'
 import Row from '../components/Row'
 import useAuth from '../hooks/useAuth'
-import { modalState } from '../atoms/modalAtom'
+import { modalState, movieState } from '../atoms/modalAtom'
 import { useRecoilValue } from 'recoil'
 import Modal from '../components/Modal'
 import Plans from '../components/Plans'
 import { getProducts, Product } from '@stripe/firestore-stripe-payments'
 import payments from '../lib (LIBRARY FOLDER)/stripe'
 import useSubscription from '../hooks/useSubscription'
+import useList from '../hooks/useList'
 
 
 interface Props {
@@ -58,6 +59,8 @@ const Home = ({
 
   // loading state protecting ui
   const subscription = useSubscription(user)
+  const movie = useRecoilValue(movieState)
+  const list= useList(user?.uid)
   
   if(loading || subscription === null) return null 
   // if there is loading or any subscription and if the subscription equals to null(no subscription) then return null.
@@ -65,6 +68,7 @@ const Home = ({
   // if there is no subscription return the plans (blocks my ui) with const subscription false
   // day 3 stripe steps very important 0:00-19:02
   if(!subscription) return <Plans products={products}/>
+
   
   
   
@@ -98,7 +102,7 @@ const Home = ({
           <Row title="Top Rated" movies={topRated} />
           <Row title="Action Thrillers" movies={actionMovies} />
           {/* My List component */}
-          
+          {list.length > 0 && <Row title="My List" movies={list}/>}
           <Row title="Comedies" movies={comedyMovies} />
           <Row title="Scary Movies" movies={horrorMovies} />
           <Row title="Romance Movies" movies={romanceMovies} />
