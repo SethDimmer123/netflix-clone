@@ -59,7 +59,7 @@ function account({ products }: Props) {
         >
           <h4>Plan Details</h4>
           {/* Find the current plan */}
-          <div>
+          <div className="col-span-2 font-medium">
             {
               products.filter(
                 (product) => product.id === subscription?.product
