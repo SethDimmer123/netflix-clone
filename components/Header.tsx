@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect,useState } from "react";
 import useAuth from "../hooks/useAuth";
 import Image from 'next/image'
+import BasicMenu from "./BasicMenu";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false) 
@@ -43,6 +44,8 @@ function Header() {
           height={100}
           className="cursor-pointer object-contain"
         />
+
+        <BasicMenu />
 
         <ul className="hidden space-x-4 md:flex">
           {/* left section */}

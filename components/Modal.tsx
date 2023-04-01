@@ -1,10 +1,15 @@
-import { HandThumbUpIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/solid'
+import { CheckIcon, HandThumbUpIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/solid'
+import { duration } from '@mui/material'
 import MuiModal from "@mui/material/Modal"
+import { deleteDoc, doc, setDoc } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
+import toast, { Toaster } from 'react-hot-toast'
 import { FaPlay, FaVolumeMute, FaVolumeUp } from 'react-icons/fa'
 import ReactPlayer from 'react-player/lazy'
 import { useRecoilState } from "recoil"
 import { modalState,movieState } from "../atoms/modalAtom"
+import { db } from '../firebase'
+import useAuth from '../hooks/useAuth'
 import { Element, Genre } from '../typing'
 
 function Modal() {
@@ -13,6 +18,8 @@ function Modal() {
     const [trailer,setTrailer] = useState("")
     const [genres,setGenres] = useState<Genre[]>([])
     const[muted,setMuted] = useState(true)
+    const {user} = useAuth()
+    const [addedToList,setAddedToList] = useState(false)
     
 
 
@@ -42,6 +49,27 @@ function Modal() {
     fetchMovie()
     },[movie])
 
+    const handleList = async () => {
+        if(addedToList) {
+            await deleteDoc(doc(db, "customer",user!.uid, "myList", movie?.id.toString()!)
+            ) //database and collection of customers i want to delete
+
+            toast(`${movie?.title || movie?.original_name} has been removed from My List`, {
+            duration: 8000,
+            }
+           )
+        }else {
+            await setDoc(doc(db,"customers", user!.uid,"myList", movie?.id.toString()!), 
+            {...movie}
+            )
+
+            toast(`${movie?.title || movie?.original_name} has been added from My List`, {
+                duration: 8000,
+                }
+            )
+        }
+    }
+
 
     const handleClose = () => {
         setShowModal(false)
@@ -54,6 +82,7 @@ function Modal() {
     className="fixex !top-7 left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden
     overflow-y-scroll rounded-md scrollbar-hide">
     <>
+    <Toaster position='bottom-center'/>
         <button 
         onClick={handleClose} 
         className="modalButton absolute right-5 top-5 
@@ -80,8 +109,13 @@ function Modal() {
                     Play
                 </button>
 
-                <button className='modalButton'>
-                    <PlusIcon className='h-7 w-7' />
+                <button className='modalButton' onClick={handleList}>
+                    {addedToList ? (
+
+                        <CheckIcon className='h-7 w-7' />
+                    ) :(
+                        <PlusIcon className='h-7 w-7' />
+                    )}
                 </button>
 
                 <button className='modalButton'>
