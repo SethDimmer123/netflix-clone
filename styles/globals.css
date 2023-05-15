@@ -72,7 +72,7 @@
 /* calc needs to add up to a total of 100% */
   .tableDataFeature {
     @apply w-[calc(100%/3)] p-2.5 text-center md:w-[calc(60%/3)] md:p-3.5;
-    /* this is how i make the table responsive */
+    /* this is how i made the table responsive */
   }
 
   .membershipLink{

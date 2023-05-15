@@ -16,7 +16,7 @@ function Banner({netflixOriginals}:Props) {
   const [showModal, setShowModal] = useRecoilState(modalState)
   const [currentMovie, setCurrentMovie] = useRecoilState(movieState)
 
-  useEffect(() => {// what this will do is gnerate a different index of a movie
+  useEffect(() => {//i generate a different index of a movie
     setMovie(
       netflixOriginals[Math.floor(Math.random() * netflixOriginals.length)]
   )

@@ -12,11 +12,11 @@ interface Props {// types
 
 function Row({title,movies}:Props) {// carousel function for clicking the buttons to see different movies.
     const rowRef = useRef<HTMLDivElement>(null)//useRef hook i provide a default value 
-    // and since i am using typescript i need to 
+    //  since i am using typescript i need to 
     // provide what type of element i am connecting it to (<HTMLDivElement>).
     
     const [isMoved,setIsMoved] = useState(false)
-    // means my default i will not see a left arrow and only when i scroll 
+    // by default i will not see a left arrow and only when i scroll 
 
     const handleClick = (direction:string) => {
         setIsMoved(true)
@@ -33,12 +33,11 @@ function Row({title,movies}:Props) {// carousel function for clicking the button
         }
     }
     // console.log(rowRef.current!.scrollLeft, rowRef.current!.clientWidth)
-    // ! means i check to make sure it is not actually null
+    // ! i check to make sure it is not actually null
     // in the console i check the client width in the console base on
     //  how big or small my window is.
 
-    // server side thumbnails i get everytime i refresh 
-    // absolutely NO LOADING
+  
 
 
 
@@ -74,4 +73,4 @@ function Row({title,movies}:Props) {// carousel function for clicking the button
 export default Row
 
 // for each and every single row i can send th
-//  different results (example netlflixOriginals) 
+//  different results (netlflixOriginals) 

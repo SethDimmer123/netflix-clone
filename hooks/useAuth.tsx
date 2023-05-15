@@ -15,7 +15,7 @@ import {
   interface IAuth {//IAuth is a type
     user: User | null
     signUp: (email: string, password: string) => Promise<void>
-    // signup and signIn accepts email and password and returns me a promise
+    // signup and signIn accepts email and password and returns a promise
     signIn: (email: string, password: string) => Promise<void>
     logout: () => Promise<void>
     error: string | null
@@ -23,14 +23,14 @@ import {
   }
 // creating context to wrap whole application within the _app.tsx file i create context first
   const AuthContext = createContext<IAuth>({//Default values-- am i logged in or am i not
-    // creates my context for my IAuth type for my children if there is a user or not (example line15)
+    // creating my context for my IAuth type for my children if there is a user or not (example line15)
     user:null,   // by default these are my createContext values
     signUp: async () => {},
     signIn: async () => {},
     logout: async () => {},
     error:null, 
     loading:false,
-    // asyncronus function returns back an object lines 28-30
+    // asynchronus function returns back an object lines 28-30
   })
 //   creating context after AuthProviderProps
 
@@ -50,7 +50,7 @@ export const AuthProvider =({children}: AuthProviderProps) => {// type is AuthPr
     const [initialLoading, setInitialLoading] = useState(true)// initialLoading blocks the ui when the user logs in
     const router = useRouter() //using router
 
-    // using a useEffect to persist when user is logged in and i refresh it will take
+    //  a useEffect to persist when user is logged in and i refresh it will take
     // me back to the log in that is why i need the useEffect
     useEffect(
         () =>

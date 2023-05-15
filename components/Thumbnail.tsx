@@ -12,7 +12,7 @@ interface Props{// a single movie
     movie:Movie | DocumentData
 }
 
-function Thumbnail({movie}: Props) {// this way of putting props is called object destructuring
+function Thumbnail({movie}: Props) {// this way of putting props object destructuring
   const [showModal, setShowModal] = useRecoilState(modalState)
   const [currentMovie, setCurrentMovie] = useRecoilState(movieState)
   return (

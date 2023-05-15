@@ -7,7 +7,7 @@ import BasicMenu from "./BasicMenu";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false) 
-  {/**by default the boolean value is false */}
+  {/** default the boolean value is false */}
   const {logout} = useAuth()
 
   // useEffect will only run on a single mount.

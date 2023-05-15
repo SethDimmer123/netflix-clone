@@ -13,7 +13,7 @@ interface Props {
 }
 
 function Plans({products}:Props) {
-    const {logout,user} = useAuth() //the useAuth hook contains all of my states: signIn,logout,user,loading,signUp,error
+    const {logout,user} = useAuth() 
     const [selectedPlan, setSelectedPlan] = useState<Product| null>(products[2])
     const [isBillingLoading,setBillingLoading] = useState(false)
 
@@ -78,7 +78,7 @@ function Plans({products}:Props) {
             </div>
 
             <Table products={products} selectedPlan={selectedPlan}/>
-            {/** selectedPlan need to be accepted as a prop in Table.tsx */}
+            {/** selectedPlan needed to be accepted as a prop in Table.tsx */}
             {/* created plans stripe product tab on dashboard stripe */}
             <button
             disabled={!selectedPlan || isBillingLoading}

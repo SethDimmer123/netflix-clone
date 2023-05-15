@@ -27,9 +27,6 @@ interface Props {
   products:Product[]
 }
 
-// the reason i am using TYPESCRIPT is it gives me really good intilisense and is really good
-// for production enviorments.
-
 // if i am working on big applications i need the intilisense because i might be working on different
 // stuff all the time and prevents me from getting into different sort of error.
 // so i am using a string instead of a number i have to use a number and if i am not using 
