@@ -6,14 +6,12 @@ import Thumbnail from "./Thumbnail"
 
 interface Props {// types
     title:string
-      // when using firebase
     movies:Movie[] | DocumentData[]
 }
 
-function Row({title,movies}:Props) {// carousel function for clicking the buttons to see different movies.
-    const rowRef = useRef<HTMLDivElement>(null)//useRef hook i provide a default value 
-    //  since i am using typescript i need to 
-    // provide what type of element i am connecting it to (<HTMLDivElement>).
+function Row({title,movies}:Props) {
+    const rowRef = useRef<HTMLDivElement>(null)
+
     
     const [isMoved,setIsMoved] = useState(false)
     // by default i will not see a left arrow and only when i scroll 
