@@ -21,10 +21,8 @@ import {
     error: string | null
     loading: boolean
   }
-// creating context to wrap whole application within the _app.tsx file i create context first
-  const AuthContext = createContext<IAuth>({//Default values-- am i logged in or am i not
-    // creating my context for my IAuth type for my children if there is a user or not (example line15)
-    user:null,   // by default these are my createContext values
+  const AuthContext = createContext<IAuth>({
+    user:null,   
     signUp: async () => {},
     signIn: async () => {},
     logout: async () => {},
@@ -35,7 +33,7 @@ import {
 //   creating context after AuthProviderProps
 
   interface AuthProviderProps{
-    children:React.ReactNode //React child type    //whats the type for children in typescript?
+    children:React.ReactNode //React child type
     //React.ReactNode is the type for the children(signUp,signIn,logout)
   }
 
@@ -60,9 +58,7 @@ export const AuthProvider =({children}: AuthProviderProps) => {// type is AuthPr
               // Logged in...
               setUser(user)
               setLoading(false)
-            } else {// otherwise if there is no user i set the user to null and set the Loading to be true 
-                                           // and route to the login page.
-              // Not logged in...
+            } else {
               setUser(null)
               setLoading(true)
               router.push('/login')

@@ -52,16 +52,10 @@ function Banner({netflixOriginals}:Props) {
         </div>
   </div>
 }
-        // i need the base url i cannot just access 
-        // the backdrop_path or the poster_path tmdb gives me the baseUrl(constants folder)
-        // since i have the url in a folder i can import it and not have to repeat myself
-        // everytime i want to use it.
+
 
 export default Banner
 
 
-// i want to get a random movie everytime i 
-// refresh the page i get it by using a useEffect
 
-// line 22 i need to set the parents height and width for image to appear on page
 

@@ -25,15 +25,12 @@ function Row({title,movies}:Props) {
             const scrollTo 
             = direction === "left" 
             ? scrollLeft - clientWidth 
-            :scrollLeft + clientWidth // it moves 1672 from 0 when clicking the scroll arrow
+            :scrollLeft + clientWidth
 
             rowRef.current.scrollTo({left:scrollTo,behavior:"smooth"})
         }
     }
-    // console.log(rowRef.current!.scrollLeft, rowRef.current!.clientWidth)
-    // ! i check to make sure it is not actually null
-    // in the console i check the client width in the console base on
-    //  how big or small my window is.
+
 
   
 
@@ -70,5 +67,4 @@ function Row({title,movies}:Props) {
 
 export default Row
 
-// for each and every single row i can send th
-//  different results (netlflixOriginals) 
+

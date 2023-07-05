@@ -1,4 +1,4 @@
-// user will be able to cancel membership to manage customer portal
+
 
 import { useState } from "react"
 import useAuth from "../hooks/useAuth"

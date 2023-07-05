@@ -10,7 +10,6 @@ function Header() {
   {/** default the boolean value is false */}
   const {logout} = useAuth()
 
-  // useEffect will only run on a single mount.
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,7 +21,6 @@ function Header() {
         
       }
     }
-    // what useEffect does is when the ui of the component mounts(loads) 
 
     window.addEventListener("scroll", handleScroll)
 
